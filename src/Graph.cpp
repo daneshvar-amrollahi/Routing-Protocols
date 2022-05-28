@@ -6,6 +6,8 @@
 
 using namespace std;
 
+const int INF = 1e9;
+
 vector<string> splitByDelim(string text, char delimeter)
 {
     string cur = "";
@@ -114,4 +116,52 @@ void Graph::delete_edge(int v, int u){
 void Graph::modify_edge(int v, int u, int cost){
     weight[make_pair(v,u)]=cost;
     weight[make_pair(u,v)]=cost;
+}
+
+void Graph::link_state(int source)
+{
+    int n = nodes.size();
+    vector<bool> mark(n, false);
+    vector<int> dist(n, INF);
+    for (auto v: nodes)
+    {
+        if (weight.find(make_pair(source, v)) != weight.end())
+        {
+            dist[v] = weight[make_pair(source, v)];
+        }
+        else
+            dist[v] = INF;
+    }
+
+    mark[source] = true;
+    dist[source] = 0;
+    int sz = 1;
+    while (sz < n)
+    {
+        int mn = INF, v;
+        for (auto node: nodes)
+        {
+            if (mark[node])
+                continue;
+            if (dist[node] < mn)
+            {
+                mn = dist[node];
+                v = node;
+            }
+        }
+        for (auto node: nodes)
+            cout << (dist[node] == INF ? -1 : dist[node]) << " ";
+        cout << endl;
+        mark[v] = true;
+        sz += 1;
+        for (auto node: nodes)
+        {
+            if (mark[node])
+                continue;
+            if (weight.find(make_pair(v, node)) == weight.end())
+                continue;
+            if (dist[v] + weight[make_pair(v, node)] < dist[node])
+                dist[node] = dist[v] + weight[make_pair(v, node)];
+        }  
+    }
 }

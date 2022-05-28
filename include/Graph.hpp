@@ -12,7 +12,6 @@ using namespace std;
 class Graph
 {
 private:
-    const static int maxNodes = 1e5 + 10;
     set<int> nodes;
     map<pair<int, int>, int> weight;
 public:
@@ -22,6 +21,7 @@ public:
     void delete_edge(int v, int u);
     void modify_edge(int v, int u, int cost);
     Graph(string topology);
+    void link_state(int source);
 };
 
 vector<string> splitByDelim(string text, char delimeter);

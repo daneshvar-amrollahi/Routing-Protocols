@@ -20,7 +20,8 @@ void Network::run(){
         if(command=="topology"){
             graph=new Graph(args);
         }else if(command=="lsrp"){
-
+            arg_list=splitByDelim(args,'-');
+            graph->link_state(stoi(args));
         }else if(command=="dvrp"){
 
         }else if(command=="show"){
