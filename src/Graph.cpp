@@ -34,13 +34,11 @@ Graph::Graph(string topology)
         int u = stoi(edge[1]);
         int w = stoi(edge[2]);
 
-        cout << v << " " << u << " " << w << endl;
         add_edge(v, u, w);
         add_edge(u, v, w);
         nodes.insert(v);
         nodes.insert(u);
     }
-    cout << "here\n";
 }
 
 void Graph::add_edge(int v, int u, int w)
