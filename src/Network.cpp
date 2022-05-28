@@ -11,6 +11,7 @@ using namespace std;
 void Network::run(){
     string command,args;
     stringstream command_stream;
+    vector<string> arg_list;
     while(getline(cin,command)){
 
         command_stream=stringstream(command);
@@ -25,9 +26,11 @@ void Network::run(){
         }else if(command=="show"){
             graph->show();
         }else if(command=="modify"){
-
+            arg_list=splitByDelim(args,'-');
+            graph->modify_edge(stoi(arg_list[0]),stoi(arg_list[1]),stoi(arg_list[2]));
         }else if(command=="remove"){
-
+            arg_list=splitByDelim(args,'-');
+            graph->delete_edge(stoi(arg_list[0]),stoi(arg_list[1]));
         }else{
             cout<<"Error: Unknown Command"<<endl;
         }
