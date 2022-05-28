@@ -9,12 +9,13 @@
 using namespace std;
 
 void Network::run(){
-    string command;
+    string command,args;
     stringstream command_stream;
     while(getline(cin,command)){
-        
+
         command_stream=stringstream(command);
         getline(command_stream,command,COMMAND_DELIM);
+        args=command_stream.str();
 
         if(command=="topology"){
 
