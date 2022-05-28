@@ -105,3 +105,13 @@ void Graph::show()
         cout << endl;
     }
 }
+
+void Graph::delete_edge(int v, int u){
+    weight.erase(make_pair(u,v));
+    weight.erase(make_pair(v,u));
+}
+
+void Graph::modify_edge(int v, int u, int cost){
+    weight[make_pair(v,u)]=cost;
+    weight[make_pair(u,v)]=cost;
+}

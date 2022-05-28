@@ -19,7 +19,11 @@ public:
 
     void add_edge(int v, int u, int w);
     void show();
+    void delete_edge(int v, int u);
+    void modify_edge(int v, int u, int cost);
     Graph(string topology);
 };
+
+vector<string> splitByDelim(string text, char delimeter);
 
 #endif
