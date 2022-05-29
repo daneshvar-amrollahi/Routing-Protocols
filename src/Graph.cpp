@@ -51,6 +51,8 @@ void Graph::add_edge(int v, int u, int w)
 
 int getDigitCount(int x)
 {
+    if (x == 0)
+        return 1;
     int res = 0;
     while (x)
     {
@@ -149,9 +151,32 @@ void Graph::link_state(int source)
                 v = node;
             }
         }
+
+        cout << "   |Iter " + to_string(sz) << ":" << endl;
+        cout << "Dest|";
         for (auto node: nodes)
-            cout << (dist[node] == INF ? -1 : dist[node]) << " ";
+        {
+            int col = 4 - getDigitCount(node);
+            for (int i = 0; i < col; i++)
+                cout << " ";
+            cout << node << "|";
+        }
         cout << endl;
+        cout << "Cost|";
+        for (auto node: nodes)
+        {
+            int col = 4 - getDigitCount(dist[node]);
+            if (dist[node] == INF)
+                col = 2;
+            for (int i = 0; i < col; i++)
+                cout << " ";
+            cout << (dist[node] == INF ? -1 : dist[node]) << "|";
+        }
+        cout << endl;
+        for (int i = 0; i < (nodes.size() + 1) * 5; i++)
+            cout << "-";
+        cout << endl;
+
         mark[v] = true;
         sz += 1;
         for (auto node: nodes)
