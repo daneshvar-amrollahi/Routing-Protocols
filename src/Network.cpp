@@ -23,7 +23,8 @@ void Network::run(){
             arg_list=splitByDelim(args,'-');
             graph->link_state(stoi(args));
         }else if(command=="dvrp"){
-
+            arg_list=splitByDelim(args,'-');
+            graph->distance_vector(stoi(args));
         }else if(command=="show"){
             graph->show();
         }else if(command=="modify"){

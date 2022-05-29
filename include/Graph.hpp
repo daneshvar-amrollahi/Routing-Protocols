@@ -22,6 +22,7 @@ public:
     void modify_edge(int v, int u, int cost);
     Graph(string topology);
     void link_state(int source);
+    void distance_vector(int source);
 };
 
 vector<string> splitByDelim(string text, char delimeter);

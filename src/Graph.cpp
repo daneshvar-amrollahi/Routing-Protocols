@@ -213,3 +213,27 @@ void Graph::link_state(int source)
     }
 
 }
+
+void Graph::distance_vector(int source)
+{
+    int n = nodes.size();
+    vector<bool> mark(n, false);
+    vector<int> dist(n, INF);
+    vector<int> par(n, -1);
+
+    while (1)
+    {
+        bool updated = 0;
+        for (map<pair<int, int>, int> :: iterator it = weight.begin(); it != weight.end(); it++)
+        {
+            int v = it->first.first, u = it->first.second, w = it->second;
+            if (dist[v] + w < dist[u])
+            {
+                dist[u] = dist[v] + dist[w];
+                par[u] = v;
+            }
+        }
+        if (!updated)
+            break;
+    }
+}
