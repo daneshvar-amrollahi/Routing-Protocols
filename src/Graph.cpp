@@ -125,11 +125,14 @@ void Graph::link_state(int source)
     int n = nodes.size();
     vector<bool> mark(n, false);
     vector<int> dist(n, INF);
+    vector<int> par(n, -1);
+
     for (auto v: nodes)
     {
         if (weight.find(make_pair(source, v)) != weight.end())
         {
             dist[v] = weight[make_pair(source, v)];
+            par[v] = source;
         }
         else
             dist[v] = INF;
@@ -186,7 +189,27 @@ void Graph::link_state(int source)
             if (weight.find(make_pair(v, node)) == weight.end())
                 continue;
             if (dist[v] + weight[make_pair(v, node)] < dist[node])
+            {
                 dist[node] = dist[v] + weight[make_pair(v, node)];
+                par[node] = v;
+            }
         }  
     }
+
+
+
+    for (auto node: nodes)
+    {
+        if (node == source)
+            continue;
+        cout << source << " " << node << ": ";
+        int p = node;
+        while (par[p] != -1)
+        {
+            cout << p << " ";
+            p = par[p];
+        }
+        cout << endl;
+    }
+
 }
