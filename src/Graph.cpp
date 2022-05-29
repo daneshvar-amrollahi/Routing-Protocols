@@ -197,19 +197,29 @@ void Graph::link_state(int source)
     }
 
 
-
+    string path;
+    cout<<"\nPath: [s] -> [d]         Min-Cost         Shortest Path"<<endl;
+    cout<<"---------------------------------------------------------"<<endl;
     for (auto node: nodes)
     {
+        path="";
         if (node == source)
             continue;
-        cout << source << " " << node << ": ";
+        cout << "    [" << source << "] -> [" << node << "]";
+        int col = 15 - getDigitCount(node);
+        for (int i = 0; i < col; i++)
+            cout << " ";
+        cout<<dist[node];
+        col= 15 - getDigitCount(dist[node]);
+        for (int i = 0; i < col; i++)
+                cout << " ";
         int p = node;
         while (par[p] != -1)
-        {
-            cout << p << " ";
+        {   
+            path=" -> "+to_string(p)+path;
             p = par[p];
         }
-        cout << endl;
+        cout << to_string(source) << path << endl;
     }
 
 }
