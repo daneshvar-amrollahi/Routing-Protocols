@@ -75,7 +75,6 @@ void Graph::show()
         cout << "|";
     }
     cout << endl;
-    //(nodes.size() + 1) * 5: row count
 
     for (int i = 0; i < (nodes.size() + 1) * 5; i++)
         cout << "-";

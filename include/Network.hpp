@@ -8,7 +8,6 @@ class Network
 private:
     Graph* graph;
 public:
-    //Network();
     void run();
 };
 
