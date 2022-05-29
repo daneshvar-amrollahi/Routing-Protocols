@@ -123,9 +123,9 @@ void Graph::modify_edge(int v, int u, int cost){
 void Graph::link_state(int source)
 {
     int n = nodes.size();
-    vector<bool> mark(n, false);
-    vector<int> dist(n, INF);
-    vector<int> par(n, -1);
+    vector<bool> mark(n + 1, false);
+    vector<int> dist(n + 1, INF);
+    vector<int> par(n + 1, -1);
 
     for (auto v: nodes)
     {
@@ -227,11 +227,12 @@ void Graph::link_state(int source)
 void Graph::distance_vector(int source)
 {
     int n = nodes.size();
-    vector<bool> mark(n, false);
-    vector<int> dist(n, INF);
-    vector<int> par(n, -1);
+    vector<bool> mark(n + 1, false);
+    vector<int> dist(n + 1, INF);
+    vector<int> par(n + 1, -1);
 
     dist[source] = 0;
+
 
     while (1)
     {
@@ -250,10 +251,6 @@ void Graph::distance_vector(int source)
             break;
     }
 
-    // for(auto node:nodes){
-    //     cout<<dist[node]<<"  ";
-    // }
-    //cout<<endl;
 
     string path;
     int prev_p;
