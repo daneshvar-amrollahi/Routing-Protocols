@@ -250,8 +250,42 @@ void Graph::distance_vector(int source)
             break;
     }
 
-    cout << "Distances:\n";
+    // for(auto node:nodes){
+    //     cout<<dist[node]<<"  ";
+    // }
+    //cout<<endl;
+
+    string path;
+    int prev_p;
+    cout<<"\nDest         NextHop         Dist         Shortest Path"<<endl;
+    cout<<"---------------------------------------------------------"<<endl;
     for (auto node: nodes)
-        cout << dist[node] << " ";
-    cout << endl;
+    {
+        path="";
+        if (node == source)
+            continue;
+        cout <<  node ;
+        int col = 15 - getDigitCount(node);
+        for (int i = 0; i < col; i++)
+            cout << " ";
+        int p = node;
+        while (par[p] != -1)
+        {   
+            path=" -> "+to_string(p)+path;
+            prev_p=p;
+            p = par[p];
+        }
+
+        cout<<prev_p;
+        col= 15 - getDigitCount(prev_p);
+        for (int i = 0; i < col; i++)
+                cout << " ";
+
+        cout<<dist[node];
+        col= 12 - getDigitCount(dist[node]);
+        for (int i = 0; i < col; i++)
+                cout << " ";
+
+        cout << to_string(source) << path << endl;
+    }
 }
