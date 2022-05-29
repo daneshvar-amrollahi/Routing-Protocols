@@ -3,6 +3,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -122,6 +123,8 @@ void Graph::modify_edge(int v, int u, int cost){
 
 void Graph::link_state(int source)
 {
+    auto start = std::chrono::steady_clock::now();
+
     int n = nodes.size();
     vector<bool> mark(n + 1, false);
     vector<int> dist(n + 1, INF);
@@ -222,10 +225,15 @@ void Graph::link_state(int source)
         cout << to_string(source) << path << endl;
     }
 
+    auto finish = std::chrono::steady_clock::now();
+    double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+    cout << "Elapsed: " << elapsed_seconds << endl;
 }
 
 void Graph::distance_vector(int source)
 {
+    auto start = std::chrono::steady_clock::now(); 
+
     int n = nodes.size();
     vector<bool> mark(n + 1, false);
     vector<int> dist(n + 1, INF);
@@ -285,4 +293,8 @@ void Graph::distance_vector(int source)
 
         cout << to_string(source) << path << endl;
     }
+
+    auto finish = std::chrono::steady_clock::now();
+    double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+    cout << "Elapsed: " << elapsed_seconds << endl;
 }
