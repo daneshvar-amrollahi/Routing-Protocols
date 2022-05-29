@@ -231,19 +231,27 @@ void Graph::distance_vector(int source)
     vector<int> dist(n, INF);
     vector<int> par(n, -1);
 
+    dist[source] = 0;
+
     while (1)
     {
-        bool updated = 0;
+        bool updated = false;
         for (map<pair<int, int>, int> :: iterator it = weight.begin(); it != weight.end(); it++)
         {
             int v = it->first.first, u = it->first.second, w = it->second;
             if (dist[v] + w < dist[u])
             {
-                dist[u] = dist[v] + dist[w];
+                dist[u] = dist[v] + w;
                 par[u] = v;
+                updated = true;
             }
         }
         if (!updated)
             break;
     }
+
+    cout << "Distances:\n";
+    for (auto node: nodes)
+        cout << dist[node] << " ";
+    cout << endl;
 }
