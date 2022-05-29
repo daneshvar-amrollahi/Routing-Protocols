@@ -89,7 +89,12 @@ void Graph::show()
         for (auto u: nodes)
         {
             int w, col;
-            if (weight.find(make_pair(v, u)) == weight.end())
+            if(u == v)
+            {
+                col = 3;
+                w = 0;
+            }
+            else if (weight.find(make_pair(v, u)) == weight.end())
             {
                 col = 2;
                 w = -1;
